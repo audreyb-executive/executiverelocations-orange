@@ -5,7 +5,7 @@ import requests
 # st.set_page_config(
 #    page_title="Boîte à outils Executive Relocations",
 #    layout="wide",
-"    page_icon="🏠",  # Optionnel : emoji ou chemin vers une image
+#    page_icon="🏠",  # Optionnel : emoji ou chemin vers une image
 #)
 
 # Titre principal
@@ -58,3 +58,4 @@ if temperature is not None:
         st.write(f"**Température : {temperature}°C**")
 else:
     st.error("Impossible de récupérer la météo pour le moment.")
+
