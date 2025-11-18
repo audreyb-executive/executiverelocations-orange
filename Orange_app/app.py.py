@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(
     page_title="Boîte à outils Executive Relocations",
     layout="wide",
-    #page_icon="🏠",  # Optionnel : emoji ou chemin vers une image
+    page_icon="🏠",  # Optionnel : emoji ou chemin vers une image
 )
 
 # Titre principal
@@ -13,3 +13,4 @@ st.title("Bienvenue sur la boîte à outils d'Executive Relocations")
 
 # Message d’explication
 st.info("← Sélectionnez une application dans le menu de gauche pour commencer.")
+
