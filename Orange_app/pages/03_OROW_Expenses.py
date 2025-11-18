@@ -438,7 +438,6 @@ def main():
 
     print("Traitement terminé 🎉")
 
-
 # =========================
 # Application Streamlit
 # =========================
@@ -483,6 +482,9 @@ def main_streamlit():
 
         st.info("Fichiers chargés. Lancement du traitement…")
 
+        # -----------------------------
+        # Lancement du traitement core
+        # -----------------------------
         try:
             with st.spinner("Traitement en cours…"):
                 main()
@@ -492,40 +494,45 @@ def main_streamlit():
 
         st.success("Traitement terminé 🎉")
 
-      # Recalcule des labels pour récupérer mmYYYY
-labels = resolve_previous_month_labels()
-mmYYYY = labels["mmYYYY"]
+        # ======================================================
+        # 2️⃣ Recalcule des labels + fichiers générés
+        # ======================================================
+        labels = resolve_previous_month_labels()
+        mmYYYY = labels["mmYYYY"]
 
-# Liste des fichiers attendus
-expected_outputs = [
-    OUTPUT_DIR / "expenses2393_mobwe_final_CONTROLE.xlsx",
-    OUTPUT_DIR / "expenses2393_bwdy8_final_CONTROLE.xlsx",
-    OUTPUT_DIR / "expenses2393_bwdi3_final_CONTROLE.xlsx",
-    OUTPUT_DIR / f"OROW_Expenses_Lignes_a_verifier_{mmYYYY}.xlsx",
-]
+        expected_outputs = [
+            OUTPUT_DIR / "expenses2393_mobwe_final_CONTROLE.xlsx",
+            OUTPUT_DIR / "expenses2393_bwdy8_final_CONTROLE.xlsx",
+            OUTPUT_DIR / "expenses2393_bwdi3_final_CONTROLE.xlsx",
+            OUTPUT_DIR / f"OROW_Expenses_Lignes_a_verifier_{mmYYYY}.xlsx",
+        ]
 
+        # ======================================================
+        # 📦 Génération ZIP
+        # ======================================================
+        import zipfile
+        import io
 
-import zipfile
-import io
+        zip_buffer = io.BytesIO()
 
-zip_buffer = io.BytesIO()
+        with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zipf:
+            for out_path in expected_outputs:
+                if out_path.exists():
+                    zipf.write(out_path, arcname=out_path.name)
 
-with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zipf:
-    for out_path in expected_outputs:
-        if out_path.exists():
-            zipf.write(out_path, arcname=out_path.name)
+        zip_buffer.seek(0)
 
-zip_buffer.seek(0)
+        st.subheader("📦 Télécharger tous les fichiers (ZIP)")
+        st.download_button(
+            label="📥 Télécharger le pack complet",
+            data=zip_buffer,
+            file_name=f"OROW_Exports_{mmYYYY}.zip",
+            mime="application/zip"
+        )
 
-st.subheader("📦 Télécharger tous les fichiers en un ZIP")
-
-st.download_button(
-    label="📥 Télécharger le pack complet",
-    data=zip_buffer,
-    file_name=f"OROW_Exports_{mmYYYY}.zip",
-    mime="application/zip"
-)
-
+        # ======================================================
+        # 📄 Téléchargement individuel des fichiers
+        # ======================================================
         st.subheader("2️⃣ Téléchargement des fichiers générés")
 
         for out_path in expected_outputs:
@@ -539,11 +546,3 @@ st.download_button(
                     )
             else:
                 st.warning(f"Fichier non trouvé (vérifier les logs) : {out_path.name}")
-
-
-
-# 👉 En mode script Streamlit, c'est cette fonction qui est appelée
-if __name__ == "__main__":
-    main_streamlit()
-
-
