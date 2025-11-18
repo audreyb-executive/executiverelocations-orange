@@ -4,3 +4,8 @@ pandas
 unidecode
 rapidfuzz
 openpyxl
+python-dateutil
+shutil
+calendar
+datetime
+os
