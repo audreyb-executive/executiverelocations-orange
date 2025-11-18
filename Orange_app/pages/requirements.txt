@@ -1,7 +1,0 @@
-streamlit
-PyMuPDF
-pandas
-unidecode
-rapidfuzz
-openpyxl
-
