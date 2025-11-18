@@ -35,6 +35,8 @@ import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill, Font
 from openpyxl.utils import get_column_letter
+import zipfile
+import io
 
 # 👉 Ajout Streamlit (seule vraie dépendance nouvelle)
 import streamlit as st
@@ -518,6 +520,31 @@ def main_streamlit():
                 st.warning(f"Fichier non trouvé (vérifier les logs) : {out_path.name}")
 
 
+# ================================
+# Création d'un ZIP regroupant tous les fichiers générés
+# ================================
+zip_buffer = io.BytesIO()
+
+with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zipf:
+    for out_path in expected_outputs:
+        if out_path.exists():
+            zipf.write(out_path, arcname=out_path.name)
+
+zip_buffer.seek(0)
+
+st.subheader("📦 Télécharger tous les fichiers en un seul ZIP")
+
+st.download_button(
+    label="📥 Télécharger le pack complet (ZIP)",
+    data=zip_buffer,
+    file_name=f"OROW_Exports_{mmYYYY}.zip",
+    mime="application/zip"
+)
+
+
+
+
 # 👉 En mode script Streamlit, c'est cette fonction qui est appelée
 if __name__ == "__main__":
     main_streamlit()
+
