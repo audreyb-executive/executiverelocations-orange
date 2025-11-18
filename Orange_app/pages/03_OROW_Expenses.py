@@ -36,7 +36,6 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill, Font
 from openpyxl.utils import get_column_letter
 
-
 # 👉 Ajout Streamlit (seule vraie dépendance nouvelle)
 import streamlit as st
 
@@ -438,6 +437,7 @@ def main():
 
     print("Traitement terminé 🎉")
 
+
 # =========================
 # Application Streamlit
 # =========================
@@ -482,9 +482,6 @@ def main_streamlit():
 
         st.info("Fichiers chargés. Lancement du traitement…")
 
-        # -----------------------------
-        # Lancement du traitement core
-        # -----------------------------
         try:
             with st.spinner("Traitement en cours…"):
                 main()
@@ -494,12 +491,11 @@ def main_streamlit():
 
         st.success("Traitement terminé 🎉")
 
-        # ======================================================
-        # 2️⃣ Recalcule des labels + fichiers générés
-        # ======================================================
+        # Recalcule des labels pour récupérer mmYYYY et nom du fichier de vérification
         labels = resolve_previous_month_labels()
         mmYYYY = labels["mmYYYY"]
 
+        # Fichiers attendus (identiques à la version notebook)
         expected_outputs = [
             OUTPUT_DIR / "expenses2393_mobwe_final_CONTROLE.xlsx",
             OUTPUT_DIR / "expenses2393_bwdy8_final_CONTROLE.xlsx",
@@ -507,32 +503,6 @@ def main_streamlit():
             OUTPUT_DIR / f"OROW_Expenses_Lignes_a_verifier_{mmYYYY}.xlsx",
         ]
 
-        # ======================================================
-        # 📦 Génération ZIP
-        # ======================================================
-        import zipfile
-        import io
-
-        zip_buffer = io.BytesIO()
-
-        with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zipf:
-            for out_path in expected_outputs:
-                if out_path.exists():
-                    zipf.write(out_path, arcname=out_path.name)
-
-        zip_buffer.seek(0)
-
-        st.subheader("📦 Télécharger tous les fichiers (ZIP)")
-        st.download_button(
-            label="📥 Télécharger le pack complet",
-            data=zip_buffer,
-            file_name=f"OROW_Exports_{mmYYYY}.zip",
-            mime="application/zip"
-        )
-
-        # ======================================================
-        # 📄 Téléchargement individuel des fichiers
-        # ======================================================
         st.subheader("2️⃣ Téléchargement des fichiers générés")
 
         for out_path in expected_outputs:
@@ -546,3 +516,8 @@ def main_streamlit():
                     )
             else:
                 st.warning(f"Fichier non trouvé (vérifier les logs) : {out_path.name}")
+
+
+# 👉 En mode script Streamlit, c'est cette fonction qui est appelée
+if __name__ == "__main__":
+    main_streamlit()
