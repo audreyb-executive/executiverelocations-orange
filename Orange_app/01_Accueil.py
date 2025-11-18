@@ -21,7 +21,7 @@ st.info("← Sélectionnez une application dans le menu de gauche pour commencer
 # CONFIGURATION
 # ---------------------------------------
 
-API_KEY = st.secrets["A81ab95cf7b136e129d510a0e9f09bac2"]  # Remplacer par ta clé OpenWeatherMap
+API_KEY = "81ab95cf7b136e129d510a0e9f09bac2"  # Remplacer par ta clé OpenWeatherMap
 VILLE = "Gennevilliers"
 URL = f"https://api.openweathermap.org/data/2.5/weather?q={VILLE}&appid={API_KEY}&units=metric&lang=fr"
 
@@ -58,4 +58,5 @@ if temperature is not None:
         st.write(f"**Température : {temperature}°C**")
 else:
     st.error("Impossible de récupérer la météo pour le moment.")
+
 
