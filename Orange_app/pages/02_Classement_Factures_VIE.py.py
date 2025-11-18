@@ -57,7 +57,14 @@ def generate_candidates(tokens):
 # -----------------------------
 # Interface Streamlit
 # -----------------------------
-st.title("📂 Classement automatique des factures VIE")
+
+# Configuration de la page (doit être la PREMIÈRE commande Streamlit)
+st.set_page_config(
+    page_title="Classement Factures VIE",
+    page_icon="📂",
+    layout="wide"
+
+st.title("📂 Classement automatique Factures VIE")
 
 zip_file = st.file_uploader("Uploader le fichier ZIP des factures VIE", type="zip")
 excel_file = st.file_uploader("Uploader le fichier Excel Table de référence", type=["xls", "xlsx"])
@@ -194,3 +201,4 @@ if st.button("Lancer le traitement"):
 
         with open(ZIP_OUT, "rb") as f:
             st.download_button("📦 Télécharger tout (factures + rapport)", f, file_name=ZIP_OUT)
+
