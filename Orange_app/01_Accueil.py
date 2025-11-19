@@ -20,11 +20,6 @@ st.markdown(
 
 
 
-# Message d’explication
-st.info("← Sélectionnez une application dans le menu de gauche pour commencer.")
-
-
-
 # ---------------------------------------
 # CONFIGURATION
 # ---------------------------------------
@@ -69,3 +64,11 @@ else:
 
 
 
+
+
+
+
+
+
+# Message d’explication
+st.info("← Sélectionnez une application dans le menu de gauche pour commencer.")
