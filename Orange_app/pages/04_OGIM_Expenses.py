@@ -3,6 +3,7 @@
 # --------------------------------------------------------------------
 import streamlit as st
 from io import BytesIO
+from pathlib import Path  
 
 def run_pipeline(exp_path: Path, fx_path: Path) -> Path:
     """
@@ -182,3 +183,4 @@ def main_streamlit():
 # Lancer Streamlit en mode script
 if __name__ == "__main__":
     main_streamlit()
+
