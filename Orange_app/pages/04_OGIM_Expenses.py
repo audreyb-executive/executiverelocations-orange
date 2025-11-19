@@ -319,8 +319,8 @@ def main_streamlit():
     
     st.header("1️⃣ Importer vos fichiers")
 
-    fx_file = st.file_uploader("Fichier Taux (FX)", type=["xlsx"])
-    exp_file = st.file_uploader("Fichier Expenses OGIM", type=["xlsx"])
+    fx_file = st.file_uploader("Fichier de taux de devise (ex : Equant Corporate rates_October_2025.xlsx)", type=["xlsx"])
+    exp_file = st.file_uploader("Fichier Expenses OGIM (ex : expenses5026.xlsx)", type=["xlsx"])
 
     if st.button("🚀 Lancer le traitement"):
         if fx_file is None or exp_file is None:
@@ -351,4 +351,5 @@ def main_streamlit():
 
 if __name__ == "__main__":
     main_streamlit()
+
 
