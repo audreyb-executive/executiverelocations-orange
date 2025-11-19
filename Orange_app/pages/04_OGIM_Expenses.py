@@ -322,7 +322,7 @@ def main_streamlit():
     fx_file = st.file_uploader("Fichier de taux de devise (ex : Equant Corporate rates_October_2025.xlsx)", type=["xlsx"])
     exp_file = st.file_uploader("Fichier Expenses OGIM (ex : expenses5026.xlsx)", type=["xlsx"])
 
-    if st.button("🚀 Lancer le traitement"):
+    if st.button("Lancer le traitement"):
         if fx_file is None or exp_file is None:
             st.error("Merci de charger les deux fichiers.")
             return
@@ -351,5 +351,6 @@ def main_streamlit():
 
 if __name__ == "__main__":
     main_streamlit()
+
 
 
