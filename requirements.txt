@@ -1,6 +1,7 @@
 streamlit
 pymupdf
 pandas
+numpy
 unidecode
 rapidfuzz
 openpyxl
