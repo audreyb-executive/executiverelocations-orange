@@ -298,9 +298,25 @@ def run_pipeline(exp_path: Path, fx_path: Path) -> Path:
 #                 INTERFACE STREAMLIT
 # ============================================================
 def main_streamlit():
-    st.title("📊 OGIM – Traitement Automatisé des Expenses")
-    st.write("Cette application exécute **exactement le même pipeline que ton notebook OGIM.**")
+    st.title("🧾OGIM – Traitement Automatisé des Expenses")
+    st.write(
+        "Cette application permet de **traiter automatiquement les fichiers de dépenses OGIM** "
+        "et de générer un fichier final conforme au processus standard."
+    )
 
+    st.markdown("""
+    **Fonctionnalités principales :**
+    - Import du fichier des dépenses OGIM et du fichier des taux de change  
+    - Filtrage automatique du mois précédent  
+    - Extraction des lignes AIRPLUS et HORS PAYE  
+    - Application des taux de change  
+    - Nettoyage et normalisation des données salariés  
+    - Préparation des montants à convertir  
+    - Génération d’un fichier Excel final structuré  
+    """)
+
+
+    
     st.header("1️⃣ Importer vos fichiers")
 
     fx_file = st.file_uploader("Fichier Taux (FX)", type=["xlsx"])
@@ -335,3 +351,4 @@ def main_streamlit():
 
 if __name__ == "__main__":
     main_streamlit()
+
