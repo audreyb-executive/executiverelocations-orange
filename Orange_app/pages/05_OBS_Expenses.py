@@ -396,17 +396,23 @@ def main():
 # APPLICATION STREAMLIT
 # =========================
 def main_streamlit():
-    st.title("📄 OBS – Traitement Automatisé des Expenses")
+    st.title("🧾 OBS – Traitement Automatisé des Expenses")
     st.write(
-        "Cette application permet de **traiter automatiquement les fichiers de dépenses OBS**, "
-        "d’appliquer les règles métiers spécifiques et de générer les fichiers Excel finaux contrôlés."
+        "Cette application exécute le traitement automatisé des dépenses OBS : "
+        "intégration des données, contrôles et génération des fichiers Excel finaux conformément aux règles métier."
     )
 
     st.markdown("""
-    **Fonctionnement :**
-    1. Importer le fichier des taux de change corporate et le fichier des dépenses OBS  
-    2. Lancer le traitement pour générer les fichiers _CONTROLE et le fichier des lignes à vérifier  
+    **Fonctionnalités principales :**
+    - Import des fichiers de dépenses et des taux de change  
+    - Sélection des données du mois de facturation ciblé  
+    - Normalisation des informations salariés et affectations  
+    - Classification automatique des lignes : **MOB**, **VIE**, **GÉNÉRAL**  
+    - Application des taux et calculs EUR/USD  
+    - Contrôles qualité selon les règles OBS  
+    - Production des fichiers Excel finaux par segment  
     """)
+
 
     st.header("1️⃣ Importer vos fichiers")
 
@@ -421,7 +427,7 @@ def main_streamlit():
             type=["xlsx", "xls"],
             key="expenses_file",
         )
-        run_btn = st.form_submit_button("🚀 Lancer le traitement")
+        run_btn = st.form_submit_button("Lancer le traitement")
 
     if run_btn:
         if not taux_file or not expenses_file:
@@ -475,3 +481,4 @@ def main_streamlit():
 # Pour un script streamlit / module
 if __name__ == "__main__":
     main_streamlit()
+
