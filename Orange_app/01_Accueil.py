@@ -15,7 +15,7 @@ st.title("Bienvenue sur le Portail Opérationnel d’Executive Relocations")
 st.markdown(
     "Ce portail centralise les outils d’automatisation destinés à optimiser les opérations : "
     "classement de factures, traitement des expenses, contrôle et génération des fichiers standards. "
-    "Veuillez sélectionner une application dans le menu pour continuer."
+    #"Veuillez sélectionner une application dans le menu pour continuer."
 )
 
 
@@ -72,4 +72,5 @@ else:
 
 # Message d’explication
 st.info("← Sélectionnez une application dans le menu de gauche pour commencer.")
+
 
