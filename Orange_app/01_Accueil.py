@@ -9,8 +9,16 @@ import requests
 #)
 
 # Titre principal
-#st.title("🏠 Accueil")
-st.title("Bienvenue sur la boîte à outils d'Executive Relocations")
+#st.title("Portail Opérationnel – Executive Relocations")
+st.title("Bienvenue sur le Portail Opérationnel d’Executive Relocations")
+
+st.markdown(
+    "Ce portail centralise les outils d’automatisation destinés à optimiser les opérations : "
+    "traitement des expenses, contrôle qualité et génération des fichiers standards. "
+    "Veuillez sélectionner une application dans le menu pour continuer."
+)
+
+
 
 # Message d’explication
 st.info("← Sélectionnez une application dans le menu de gauche pour commencer.")
@@ -58,5 +66,6 @@ if temperature is not None:
         st.write(f"**Température : {temperature}°C**")
 else:
     st.error("Impossible de récupérer la météo pour le moment.")
+
 
 
