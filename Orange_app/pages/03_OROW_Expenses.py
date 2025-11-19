@@ -442,9 +442,9 @@ def main():
 # Application Streamlit
 # =========================
 def main_streamlit():
-    st.title("📒 Pipeline OROW – Traitement, Contrôle et Génération")
+    st.title("🧾 OROW – Traitement, Contrôle et Génération")
     st.write(
-        "Cette application exécute le même traitement que le notebook :\n"
+        "Cette application permet de traiter automatiquement les fichiers de dépenses OROW et de générer un fichier consolidé conforme au processus interne. :\n"
         "- Filtre sur le mois de facturation\n"
         "- Jointure avec les taux de change\n"
         "- Nettoyage des noms / assignments\n"
@@ -521,3 +521,4 @@ def main_streamlit():
 # 👉 En mode script Streamlit, c'est cette fonction qui est appelée
 if __name__ == "__main__":
     main_streamlit()
+
